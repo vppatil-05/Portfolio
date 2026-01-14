@@ -280,6 +280,280 @@ body
     transition: 0.5s;
 }
 
+/* Achievements Section - Premium Row Layout */
+.achievements {
+    padding: 100px 10%;
+    background: #051129;
+    overflow: hidden; /* Prevent overflow from animations */
+}
+
+.achievements-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Spacing between rows */
+    position: relative;
+}
+
+/* Add a central connecting line */
+.achievements-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #0ef;
+    transform: translateX(-50%);
+    box-shadow: 0 0 15px #0ef;
+    z-index: 0;
+}
+
+.achievement-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.achievement-left, .achievement-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Alternating Alignment */
+.achievement-row:nth-child(odd) .achievement-left {
+    align-items: flex-end;
+    text-align: right;
+    padding-right: 40px;
+}
+
+.achievement-row:nth-child(odd) .achievement-right {
+    align-items: flex-start;
+    padding-left: 40px;
+}
+
+.achievement-row:nth-child(even) .achievement-left {
+    align-items: flex-end;
+    padding-right: 40px;
+}
+
+.achievement-row:nth-child(even) .achievement-right {
+    align-items: flex-start;
+    text-align: left;
+    padding-left: 40px;
+}
+
+/* Icon Circle Styling */
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    background: #081b29;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+    transition: 0.5s ease;
+    z-index: 2; /* Sit above the line */
+    background-color: #051129; /* Cover the line */
+}
+
+.icon-circle i {
+    font-size: 40px;
+    color: #0ef;
+    transition: 0.5s ease;
+}
+
+.achievement-row:hover .icon-circle {
+    background: #0ef;
+    box-shadow: 0 0 40px #0ef, 0 0 80px #0ef;
+    transform: scale(1.1);
+}
+
+.achievement-row:hover .icon-circle i {
+    color: #081b29;
+}
+
+/* Text Styling */
+.achievement-row h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.achievement-row p {
+    font-size: 1.1rem;
+    color: #dedede;
+    line-height: 1.6;
+    max-width: 400px; /* Limit text width for readability */
+}
+
+/* Contact Section */
+.contact {
+    padding: 100px 10%;
+    background: #081b29; /* Matches body background */
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2.5rem;
+    margin-top: 50px;
+}
+
+.contact-box {
+    background: #112e42;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid #112e42;
+    transition: 0.5s ease;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.contact-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #0ef;
+    z-index: -1;
+    transition: 0.5s ease;
+}
+
+.contact-box:hover::before {
+    width: 100%;
+}
+
+.contact-box:hover {
+    border-color: #0ef;
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px #0ef;
+}
+
+.contact-box .icon-circle {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: transparent;
+    border-color: #0ef;
+    box-shadow: none;
+}
+
+.contact-box i {
+    font-size: 30px;
+    color: #0ef;
+    transition: 0.5s;
+}
+
+.contact-box h3 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    transition: 0.5s;
+}
+
+.contact-box p {
+    font-size: 1rem;
+    color: #ccc;
+    transition: 0.5s;
+}
+
+.contact-box:hover h3,
+.contact-box:hover p,
+.contact-box:hover i {
+    color: #081b29;
+}
+
+.contact-box:hover .icon-circle {
+    border-color: #081b29;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .achievements-container::before {
+        left: 20px; /* Move line to left on mobile */
+    }
+    
+    .achievement-row {
+        flex-direction: column !important; /* Stack vertically */
+        align-items: flex-start;
+        margin-bottom: 30px;
+        padding-left: 50px; /* Space for the line */
+    }
+
+    .achievement-row .achievement-left,
+    .achievement-row .achievement-right {
+        text-align: left !important; /* Reset text align */
+        padding: 0 !important;
+        align-items: flex-start !important;
+        width: 100%;
+    }
+
+    /* Hide the standalone icon container divs in the layout flow for mobile if needed, 
+       or simpler: Just repurpose the icon to be a bullet point */
+    .achievement-right .icon-circle, .achievement-left .icon-circle {
+        position: absolute;
+        left: -50px; /* Align with the line */
+        top: 0;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .icon-circle i {
+        font-size: 20px;
+    }
+
+    /* We might have duplicate icons due to structure, let's just hide the "image side" on mobile 
+       and rely on the content side. Wait, the HTML structure has content on left OR right.
+       We need to standardise for mobile.
+    */
+}
+
+/* Better Mobile Query Fix for structure */
+@media (max-width: 768px) {
+    .achievements-container::before {
+        display: none; /* Remove line for simpler mobile view */
+    }
+    
+    .achievement-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .achievement-row:nth-child(even) {
+        flex-direction: column-reverse; /* Ensure icon is top or consistent */
+    }
+
+    .achievement-left, .achievement-right {
+        align-items: center !important;
+        text-align: center !important;
+        padding: 0 !important;
+    }
+    
+    .icon-circle {
+        margin-bottom: 10px;
+    }
+}
+
 
 @keyframes slideRight {
     0%{
